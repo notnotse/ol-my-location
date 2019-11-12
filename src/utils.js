@@ -1,12 +1,16 @@
-import ol from 'openlayers'
+import Overlay from 'ol/Overlay'
+import { Vector as VectorLayer } from 'ol/layer'
+import { Vector as VectorSource } from 'ol/source'
+import Feature from 'ol/Feature'
 
 const utils = {
-  createOverlay: () => new ol.Overlay({
+  createOverlay: () => new Overlay({
     element: document.createElement('div'),
     stopEvent: false
   }),
-  createAccuracyLayer: (style) => new ol.layer.Vector({
-    style: style
+  createAccuracyLayer: (style) => new VectorLayer({
+    style: style,
+    source: new VectorSource()
   }),
   createPoisitionIconElement: (heading, color, size) => {
     const element = document.createElement('div')
@@ -24,11 +28,11 @@ const utils = {
     return element
   },
   updateAccuracy: (accuracyLayer, geom) => {
-    const feature = new ol.Feature({
+    const feature = new Feature({
       geometry: geom
     })
 
-    const source = new ol.source.Vector({
+    const source = new VectorSource({
       features: [feature]
     })
 
@@ -40,8 +44,8 @@ const utils = {
     overlay.setElement(icon)
   },
   panToCoord: (map, coord, duration = 300) => {
-    let view = map.getView()
-    let zoom = view.getZoom()
+    const view = map.getView()
+    const zoom = view.getZoom()
     view.animate({
       duration,
       center: coord,

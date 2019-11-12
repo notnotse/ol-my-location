@@ -1,19 +1,20 @@
-import ol from 'openlayers'
+import { Fill, Stroke, Style } from 'ol/style'
+import Geolocation from 'ol/Geolocation'
 import utils from './utils'
 import controls from './controls'
 
-const OL3ShowLocation = (map, options) => {
+const OLShowLocation = (map, options) => {
   const defaults = {
     trackingOptions: {
       enableHighAccuracy: true
     },
     size: 20,
     color: 'rgb(241, 22, 210)',
-    accuracyLayerStyle: new ol.style.Style({
-      fill: new ol.style.Fill({
+    accuracyLayerStyle: new Style({
+      fill: new Fill({
         color: 'rgba(241, 22, 210, 0.05)'
       }),
-      stroke: new ol.style.Stroke({
+      stroke: new Stroke({
         color: 'rgba(241, 22, 210, 0.5)'
       })
     }),
@@ -22,10 +23,10 @@ const OL3ShowLocation = (map, options) => {
 
   const config = Object.assign({}, defaults, options)
 
-  let state = {
+  const state = {
     map: map,
     config: config,
-    geolocation: new ol.Geolocation({
+    geolocation: new Geolocation({
       projection: map.getView().getProjection(),
       trackingOptions: config.trackingOptions
     }),
@@ -34,9 +35,9 @@ const OL3ShowLocation = (map, options) => {
   }
 
   return Object.assign(
-      {},
-      controls(state)
+    {},
+    controls(state)
   )
 }
 
-export default OL3ShowLocation
+export default OLShowLocation

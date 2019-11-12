@@ -1,21 +1,25 @@
-import ol from 'openlayers'
-import OL3MyLocation from '../src/index'
+import 'ol/ol.css'
+import Map from 'ol/Map'
+import TileLayer from 'ol/layer/Tile'
+import OSM from 'ol/source/OSM'
+import View from 'ol/View'
+import OLMyLocation from '../src/index'
 
 document.addEventListener('DOMContentLoaded', () => {
-  var map = new ol.Map({
+  var map = new Map({
     layers: [
-      new ol.layer.Tile({
-        source: new ol.source.OSM()
+      new TileLayer({
+        source: new OSM()
       })
     ],
     target: 'map',
-    view: new ol.View({
+    view: new View({
       center: [100, 0],
       zoom: 2
     })
   })
 
-  const location = OL3MyLocation(map, {
+  const location = OLMyLocation(map, {
     onChange: (e) => {
       console.log('change', e)
     }
