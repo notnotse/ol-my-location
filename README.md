@@ -78,7 +78,7 @@ Toggles geolocation tracking.
 * `npm install -g parcel-bundler`
 * `npm init -y`
 * `npm install ol`
-* `npm install notnotse/ol-my-location`
+* `npm install ol-my-location`
 * Create an index.html file
 
 ```html

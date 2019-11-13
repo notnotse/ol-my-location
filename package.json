@@ -1,6 +1,6 @@
 {
   "name": "ol-my-location",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Show current location using OL built in geolocation API",
   "main": "dist/index.js",
   "engines": {
@@ -13,8 +13,7 @@
     "lint": "eslint . ./",
     "lint:fix": "npm run lint -- --fix",
     "test": "karma start bin/karma.js",
-    "clean": "rm -rf dist",
-    "postinstall": "npm run deploy"
+    "clean": "rm -rf dist"
   },
   "repository": {
     "type": "git",
